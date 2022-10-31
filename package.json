@@ -1,0 +1,23 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "to-do list project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SQUASHD/todo-list.git"
+  },
+  "author": "squashd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SQUASHD/todo-list/issues"
+  },
+  "homepage": "https://github.com/SQUASHD/todo-list#readme",
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
