@@ -1,4 +1,4 @@
-const todoItem = (title, dueDate = null) => {
+const todo = (title, dueDate = null) => {
   let completed = false;
   let description = null;
   
@@ -22,3 +22,5 @@ const todoItem = (title, dueDate = null) => {
 
   return { setTitle, getTitle, setDueDate, getDueDate, toggleCompleted, getCompleted, setDescription, getDescription };
 }
+
+export { todo };
