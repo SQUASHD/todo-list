@@ -1,22 +1,22 @@
-const Project = (name) => {
-  let todos = [];
-  let description = null;
+export default class Project {
+  constructor(name) {
+    this.name = name
+    this.todos = [];
+  }
 
-  const setName = (newName) => name = newName;
-  const getName = () => name;
+  setName = (newName) => name = newName;
+  getName = () => name;
 
-  const addTodo = (todo) => {
+  addTodo = (todo) => {
     todos.push(todo);
   }
-  const removeTodo = (todo) => {
+  removeTodo = (todo) => {
     todos = todos.filter((item) => item !== todo);
   }
-  const getTodos = () => todos;
+  getTodos = () => todos;
 
-  const setDescription = (newDescription) => description = newDescription;
-  const getDescription = () => description;
-
-  return { setName, getName, addTodo, removeTodo, getTodos, setDescription, getDescription };
+  setDescription = (newDescription) => description = newDescription;
+  getDescription = () => description;
 }
 
 export { Project };
