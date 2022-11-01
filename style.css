@@ -1,7 +1,8 @@
 :root {
   --primary-dark: hsl(240, 5%, 15%);
   --primary-dark-lighter: hsl(240, 5%, 20%);
-  --primary-light: hsl(240, 5%, 90%)
+  --primary-light: hsl(240, 5%, 90%);
+  --primary-light-darker: hsl(240, 5%, 85%);
 }
 
 html, body, div, span, applet, object, iframe,
@@ -48,6 +49,14 @@ table {
 	border-spacing: 0;
 }
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: Ubuntu, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -59,7 +68,7 @@ body {
   background-color: var(--primary-light);
   
   display: grid;
-  grid-template-columns: minmax(250px, 300px) 1fr;
+  grid-template-columns: clamp(240px, 13vw, 350px) 1fr;
   grid-template-rows: 110px 1fr;
 }
 
@@ -86,4 +95,89 @@ body {
   grid-row: 2 / 3;
   grid-column: 1 / 2;
   background-color: var(--primary-dark-lighter);
+}
+
+.project-view {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 20px 40px;
+
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+  grid-template-rows: fit-content(100%) fit-content(100%) 20px;
+}
+
+.project-view > * {
+  grid-column: 2 / 3;
+  padding: 14px 48px;
+}
+
+.project-view > h1.project-name {
+  grid-row: 1 / 2;
+
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.todo-list {
+  grid-row: 2 / 3;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(auto-fill, 40px);
+}
+
+button.button-todo {
+  width: 100%;
+  height: 40px;
+
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 10px;
+
+  padding: 0;
+  margin: 10px 0;
+
+  font-size: 1.2rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button.button-todo:hover {
+  background-color: var(--primary-light-darker);
+}
+
+button.button-todo > * {
+  margin: 0 10px;
+}
+
+button.button-todo > .button-left {
+  justify-self: start;
+
+  display: flex;
+  gap: 10px;
+}
+
+button.button-todo > .button-right {
+  grid-column: 3 / 4;
+  justify-self: end;
+}
+
+@media (max-width: 650px) {
+  .nav {
+    width: 100%;
+    display: none;
+  }
+
+  .project-view {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+  }
 }
