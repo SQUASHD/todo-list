@@ -104,7 +104,27 @@ body {
   padding: 20px;
 }
 
-.default-projects {
+.projects-title-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  color: white;
+  padding: 24px 0 0;
+  margin-bottom: 16px;
+}
+
+h1.projects-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.projects-title-container > svg {
+  cursor: pointer;
+}
+
+.default-projects,
+.custom-projects-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -113,13 +133,6 @@ body {
 
 .nav > * > button:hover {
   background-color: var(--primary-dark-hover);
-}
-
-.nav h1 {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: white;
-  margin-bottom: 16px;
 }
 
 .project-view {
@@ -166,7 +179,8 @@ button {
   border: none;
 }
 
-button.default-projects-button {
+button.default-projects-button,
+button.custom-projects-button {
   text-align: left;
   background-color: var(--primary-dark);
   color: white;
@@ -174,8 +188,39 @@ button.default-projects-button {
   font-weight: 700;
 
   display: flex;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
+}
+
+button.custom-projects-button {
+  justify-content: space-between;
+  align-items: center;
+}
+
+button.custom-projects-button > .project-button-left {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+button.default-projects-button > p,
+button.custom-projects-button > .project-button-left {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.button-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.project-button-right {
+  justify-self: flex-end;
 }
 
 button.button-todo {
@@ -212,7 +257,7 @@ button.button-todo > .button-right {
   justify-self: end;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
   .nav {
     width: 100%;
     display: none;
