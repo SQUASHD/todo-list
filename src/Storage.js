@@ -27,4 +27,17 @@ export default class Storage {
             (storage && storage.length !== 0);
     }
   }
+
+  static saveTodoList = (data) => {
+    localStorage.setItem('todolist', JSON.stringify(data));
+  }
+
+  static loadTodoList = () => {
+    const todoList = Object.assign(
+      new TodoList(),
+      JSON.parse(localStorage.getItem('todolist'))
+    )
+  }
+
+  
 }

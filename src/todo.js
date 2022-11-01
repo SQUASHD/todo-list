@@ -1,6 +1,5 @@
-const Todo = (title, dueDate = null) => {
+const Todo = (title, dueDate = null, description = null) => {
   let completed = false;
-  let description = null;
   
   const setDueDate = (date) => {
     dueDate = date;
