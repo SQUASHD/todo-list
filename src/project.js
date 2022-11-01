@@ -2,19 +2,22 @@ const Project = (name) => {
   let name = name;
   let todos = [];
 
-  setName = (newName) => name = newName;
-  getName = () => name;
+  const setName = (newName) => name = newName;
+  const getName = () => name;
 
-  setTodos = (todos) => todos = todos;
-  getTodos = () => todos;
+  const setTodos = (todos) => todos = todos;
+  const getTodos = () => todos;
 
-  addTodo = (todo) => todos.push(todo);
-  removeTodo = (todo) => {
+  const addTodo = (todo) => todos.push(todo);
+  const removeTodo = (todo) => {
     todos = todos.filter((item) => item !== todo);
   }
-  getTodo = (todoName) => {
+  const getTodo = (todoName) => {
     return todos.find((todo) => todo.getName() === todoName);
   }
+  
+  return { setName, getName, setTodos, getTodos, addTodo, removeTodo, getTodo };
+  
 }
 
 export { Project };

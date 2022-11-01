@@ -4,48 +4,72 @@ import { Todo } from "./todo";
 
 const Storage = (() => {
 
-  const storageAvailable = (type) => {
-    let storage;
-    try {
-        storage = window[type];
-        const x = '__storage_test__';
-        storage.setItem(x, x);
-        storage.removeItem(x);
-        return true;
-    }
-    catch (e) {
-        return e instanceof DOMException && (
-            // everything except Firefox
-            e.code === 22 ||
-            // Firefox
-            e.code === 1014 ||
-            // test name field too, because code might not be present
-            // everything except Firefox
-            e.name === 'QuotaExceededError' ||  
-            // Firefox
-            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-            // acknowledge QuotaExceededError only if there's something already stored
-            (storage && storage.length !== 0);
-    }
-  }
-
   const saveTodoList = (data) => {
     localStorage.setItem('todolist', JSON.stringify(data));
   }
 
   const getTodoList = () => {
     const todoList = Object.assign(
-      new TodoList(),
+      TodoList(),
       JSON.parse(localStorage.getItem('todolist'))
     )
 
-    todoList.projects = todoList.projects.map((project) => {
-      return Object.assign(new Project(), project);
-    });
+    todoList.setProjects(
+      todoList
+        .getProjects()
+        .map((project) => Object.assign(Project(), project))
+    );
+
+    todoList
+      .getProjects()
+      .forEach((project) =>
+        project.setTodos(
+          project.getTodos().map((todo) => Object.assign(Todo(), todo))
+        )
+      );
+      
     return todoList
+  };
+
+  const addProject = (project) => {
+    const todoList = getTodoList()
+    todoList.addProject(project)
+    saveTodoList(todoList)
   }
 
-  return { storageAvailable, saveTodoList, getTodoList }; 
+  const deleteProject = (projectName) => {
+    const todoList = getTodoList()
+    todoList.deleteProject(projectName)
+    saveTodoList(todoList)
+  }
+
+  const addTodo = (projectName, todo) => {
+    const todoList = getTodoList()
+    todoList.getProject(projectName).addTodo(todo)
+    saveTodoList(todoList)
+  }
+
+  const deleteTodo = (projectName, TodoName) => {
+    const todoList = getTodoList()
+    todoList.getProject(projectName).deleteTodo(TodoName)
+    saveTodoList(todoList)
+  }
+
+  const renameTodo = (projectName, TodoName, newTodoName) => {
+    const todoList = getTodoList()
+    todoList.getProject(projectName).getTodo(TodoName).setName(newTodoName)
+    saveTodoList(todoList)
+  }
+
+  const setTodoDate = (projectName, TodoName, newDueDate) => {
+    const todoList = getTodoList()
+    todoList.getProject(projectName).getTodo(TodoName).setDate(newDueDate)
+    saveTodoList(todoList)
+  }
+    
+    
+  return { saveTodoList, getTodoList, addProject, deleteProject, addTodo, deleteTodo, renameTodo, setTodoDate }
+
 })();
 
 export { Storage };

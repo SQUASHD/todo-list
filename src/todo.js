@@ -20,6 +20,7 @@ const Todo = (title, dueDate = null, description = null) => {
   const getDescription = () => description;
 
   return { setTitle, getTitle, setDueDate, getDueDate, toggleCompleted, getCompleted, setDescription, getDescription };
+  
 }
 
 export { Todo };
