@@ -1,22 +1,20 @@
-export default class Project {
-  constructor(name) {
-    this.name = name
-    this.todos = [];
-  }
+const Project = (name) => {
+  let name = name;
+  let todos = [];
 
   setName = (newName) => name = newName;
   getName = () => name;
 
-  addTodo = (todo) => {
-    todos.push(todo);
-  }
+  setTodos = (todos) => todos = todos;
+  getTodos = () => todos;
+
+  addTodo = (todo) => todos.push(todo);
   removeTodo = (todo) => {
     todos = todos.filter((item) => item !== todo);
   }
-  getTodos = () => todos;
-
-  setDescription = (newDescription) => description = newDescription;
-  getDescription = () => description;
+  getTodo = (todoName) => {
+    return todos.find((todo) => todo.getName() === todoName);
+  }
 }
 
 export { Project };

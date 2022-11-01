@@ -1,19 +1,26 @@
 import { Project } from "./project";
 import { Todo } from "./todo";
 
-export default class TodoList {
-  constructor() {
-    this.projects = [];
-    this.projects.push(new Project("Personal"));
-    this.projects.push(new Project("Work"));
-    this.projects.push(new Project("Studies"));
+const TodoList = (() => {
+  let projects = [];
+  projects.push(new Project("Personal"));
+  projects.push(new Project("Work"));
+  projects.push(new Project("Studies"));
+
+const setProjects = (projectsList) => projects = projectsList;
+
+const getProjects = () => projects;
+
+const addProject = (newProject) => {
+    projects.push(newProject);
   }
 
-  addProject = (newProject) => {
-    this.projects.push(newProject);
+const removeProject = (project) => {
+    projects = projects.filter((item) => item !== project);
   }
 
-  removeProject = (project) => {
-    this.projects = this.projects.filter((item) => item !== project);
-  }
-}
+return { setProjects, getProjects, addProject, removeProject };
+  
+})();
+
+export { TodoList };

@@ -1,9 +1,10 @@
+import { TodoList } from './todoList';
 import { Project } from "./project";
 import { Todo } from "./todo";
 
-export default class Storage {  
+const Storage = (() => {
 
-  static storageAvailable = (type) => {
+  const storageAvailable = (type) => {
     let storage;
     try {
         storage = window[type];
@@ -28,16 +29,23 @@ export default class Storage {
     }
   }
 
-  static saveTodoList = (data) => {
+  const saveTodoList = (data) => {
     localStorage.setItem('todolist', JSON.stringify(data));
   }
 
-  static loadTodoList = () => {
+  const getTodoList = () => {
     const todoList = Object.assign(
       new TodoList(),
       JSON.parse(localStorage.getItem('todolist'))
     )
+
+    todoList.projects = todoList.projects.map((project) => {
+      return Object.assign(new Project(), project);
+    });
+    return todoList
   }
 
-  
-}
+  return { storageAvailable, saveTodoList, getTodoList }; 
+})();
+
+export { Storage };
