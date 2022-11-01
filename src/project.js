@@ -9,15 +9,15 @@ const Project = (name) => {
   const getTodos = () => todos;
 
   const addTodo = (todo) => todos.push(todo);
-  const removeTodo = (todo) => {
+  const deleteTodo = (todo) => {
     todos = todos.filter((item) => item !== todo);
   }
   const getTodo = (todoName) => {
     return todos.find((todo) => todo.getName() === todoName);
   }
   
-  return { setName, getName, setTodos, getTodos, addTodo, removeTodo, getTodo };
-  
+  return { setName, getName, setTodos, getTodos, addTodo, deleteTodo, getTodo };
+
 }
 
 export { Project };
