@@ -2,9 +2,8 @@ import { Project } from "./project";
 
 const TodoList = () => {
   let projects = [];
-  projects.push(new Project("Personal"));
-  projects.push(new Project("Work"));
-  projects.push(new Project("Studies"));
+  projects.push(Project("Inbox"));
+  projects.push(Project("Due"))
 
   const setProjects = (projectsList) => projects = projectsList;
 
