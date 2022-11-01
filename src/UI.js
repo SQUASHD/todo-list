@@ -25,6 +25,17 @@ const UI = (() => {
     )
   }
 
+  const loadTodos = (projectName) => {
+    Storage.getTodoList()
+      .getProject(projectName)
+      .getTodos()
+      .forEach((todo) => createTodo(todo.getName(), todo.getDueDate()))
+    
+    if (projectName !== 'Due') {
+      initAddTodoButton();
+    }
+  }
+
   const loadProjectContent = (projectName) => {
     const projectView = document.getElementById('project-view');
     projectView.innerHTML = `
@@ -55,6 +66,8 @@ const UI = (() => {
         </div>
       </div>`
     }
+
+    loadTodos(projectName);
   }
 
   const initProjectButtons = () => {
@@ -67,6 +80,9 @@ const UI = (() => {
     customProjectsBtn.forEach((btn) => {
       btn.addEventListener('click', handleProjectClick);
     });
+  }
+
+  const initAddTodoButtons = () => {
   }
 
   const openInbox = () => {
