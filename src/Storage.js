@@ -63,7 +63,7 @@ const Storage = (() => {
 
   const setTodoDate = (projectName, TodoName, newDueDate) => {
     const todoList = getTodoList()
-    todoList.getProject(projectName).getTodo(TodoName).setDate(newDueDate)
+    todoList.getProject(projectName).getTodo(TodoName).setDueDate(newDueDate)
     saveTodoList(todoList)
   }
     
