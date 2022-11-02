@@ -5,6 +5,8 @@
   --primary-light: hsl(240, 5%, 90%);
   --primary-light-darker: hsl(240, 5%, 85%);
   --primary-light-darker-hover: hsl(240, 5%, 80%);
+
+  --completed-todos: hsl(240, 5%, 50%);
 }
 
 html, body, div, span, applet, object, iframe,
@@ -154,7 +156,7 @@ h1.projects-title {
 }
 
 .project-view > div#todo-list {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .project-view > h1#project-name {
@@ -326,16 +328,29 @@ div.create-todo-form {
   justify-items: space-between;
 }
 
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 button.button-todo {
-  background-color: transparent;
+  color: var(--primary-dark);
+  background-color: var(--primary-light-darker);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-
+}
+button.button-todo.completed {
+  color: var(--completed-todos);
+}
+button.button-todo.completed > .button-left > .todo-text {
+  text-decoration: line-through;
+  font-style: italic;
 }
 
 button.button-todo:hover {
-  background-color: var(--primary-light-darker);
+  background-color: var(--primary-light-darker-hover);
 }
 
 button.button-todo,
