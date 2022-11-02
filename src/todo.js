@@ -19,11 +19,11 @@ export default class Todo {
     return this.completed;
   }
 
-  setTitle(newTitle) {
-    this.title = newTitle;
+  setName(newName) {
+    this.name = newName;
   }
-  getTitle() {
-    return this.title;
+  getName() {
+    return this.name;
   }
   
 }
