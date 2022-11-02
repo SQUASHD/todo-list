@@ -4,6 +4,7 @@
   --primary-dark-lighter: hsl(240, 5%, 20%);
   --primary-light: hsl(240, 5%, 90%);
   --primary-light-darker: hsl(240, 5%, 85%);
+  --primary-light-darker-hover: hsl(240, 5%, 80%);
 }
 
 html, body, div, span, applet, object, iframe,
@@ -119,7 +120,7 @@ h1.projects-title {
   font-weight: 900;
 }
 
-.projects-title-container > svg {
+.projects-title-container {
   cursor: pointer;
 }
 
@@ -143,28 +144,24 @@ h1.projects-title {
 
   margin: 0 auto;
   padding: 20px 40px;
-
-  display: grid;
-  grid-template-columns: 20px 1fr 20px;
-  grid-template-rows: fit-content(100%) fit-content(100%) 20px;
 }
 
-.project-view > * {
-  grid-column: 2 / 3;
-  padding: 14px 48px;
+.project-view > h1#project-name,
+.project-view > div#todo-list,
+.project-view > div.add-todo-button-container,
+.project-view > div#create-todo-container  {
+  padding: 0 60px 0;
 }
 
-.project-view > h1.project-name {
-  grid-row: 1 / 2;
+.project-view > div#todo-list {
+  margin-bottom: 10px;
+}
 
-  padding: 20px 60px 0;
+.project-view > h1#project-name {
+  padding: 40px 70px 20px;
   font-size: 2rem;
   font-weight: 700;
   color: var(--primary-dark);
-}
-
-.todo-list {
-  grid-row: 2 / 3;
 }
 
 button {
@@ -193,7 +190,8 @@ div.create-project-form {
   margin-bottom: 10px;
 }
 
-div.create-project-form > input[type="text"] {
+div.create-project-form > input[type="text"],
+.create-todo-form > input[type="text"] {
   appearance: none;
   border: none;
   outline: none;
@@ -205,11 +203,39 @@ div.create-project-form > input[type="text"] {
   font-size: .8rem;
 }
 
-div.create-project-form.hidden {
+button#add-todo-button {
+  box-sizing: border-box;
+  background-color: var(--primary-light-darker);
+}
+
+button#add-todo-button > .button-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+button#add-todo-button > .button-left > div.todo-icon,
+button.button-todo > .button-left > div.todo-icon  {
+  height: 20px;
+  width: 20px;
+}
+
+button#add-todo-button > .button-left > .todo-text  {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+button#add-todo-button:hover {
+  background-color: var(--primary-light-darker-hover);
+}
+
+*.hidden,
+button#add-todo-button.hidden {
   display:none;
 }
 
-.project-button-group {
+.project-button-group,
+.todo-button-group {
   display: flex;
   gap: 10px;
   margin-top: 10px;
@@ -232,14 +258,26 @@ div.create-project-form.hidden {
 }
 
 button.custom-projects-button {
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 500;
+}
+
+button.custom-projects-button.active,
+button.default-projects-button.active {
+  background-color: var(--primary-dark-hover);
+  font-weight: 900;
 }
 
 button.custom-projects-button > .project-button-left {
-  display: flex;
   gap: 6px;
+  display: flex;
   align-items: center;
+}
+
+.project-button-left > svg {
+  flex-shrink: 0;
 }
 
 button.default-projects-button > p,
@@ -248,7 +286,6 @@ button.custom-projects-button > .project-button-left {
   white-space: nowrap;
   overflow: hidden;
   font-size: 1rem;
-  font-weight: 500;
 }
 
 .button-text {
@@ -256,30 +293,58 @@ button.custom-projects-button > .project-button-left {
   white-space: nowrap;
   overflow: hidden;
   font-size: 1rem;
-  font-weight: 500;
 }
+
 .project-button-right {
+  fill: transparent;
   justify-self: flex-end;
+  height: 20px;
+  width: 20px;
+}
+
+.project-button-right {
+  visibility: hidden
+}
+
+.custom-projects-button:hover .project-button-right {
+  visibility: visible;
+}
+
+div.create-todo-form {
+  width: 100%;
+  flex-direction: column;
+}
+
+.create-todo-form .todo-button-group {
+  display: flex;
+  justify-items: space-between;
 }
 
 button.button-todo {
-  height: 40px;
-
   background-color: transparent;
-  font-size: 1.2rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 
-  padding: 10px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 button.button-todo:hover {
   background-color: var(--primary-light-darker);
 }
 
-button.button-todo > * {
+button.button-todo,
+button#add-todo-button {
+  font-size: 1.2rem;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+
+}
+
+button.button-todo > *,
+button#add-todo-button > * {
   margin: 0 10px;
 }
 
@@ -296,6 +361,17 @@ button.button-todo > .button-right {
   justify-self: end;
 }
 
+button.create-todo-button,
+button.cancel-todo-button {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+button.create-todo-button:hover,
+button.cancel-todo-button:hover {
+  background-color: var(--primary-light-darker-hover);
+}
+
 @media (max-width: 700px) {
   .nav {
     width: 100%;
@@ -305,7 +381,6 @@ button.button-todo > .button-right {
   .project-view {
     grid-column: 1 / 3;
     grid-row: 2 / 3;
-    grid-template-columns: 1fr;
   }
   .project-view > * {
     grid-column: 1 / 2;
