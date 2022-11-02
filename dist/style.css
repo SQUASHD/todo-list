@@ -226,6 +226,13 @@ button#add-todo-button > .button-left > .todo-text  {
   font-weight: 700;
 }
 
+button.button-todo > .button-left > .todo-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
 button#add-todo-button:hover {
   background-color: var(--primary-light-darker-hover);
 }
@@ -349,9 +356,11 @@ button#add-todo-button > * {
 
 button.button-todo > .button-left {
   justify-self: start;
+  min-width: 0;
 }
 button.button-todo > .button-right {
   justify-self: end;
+  flex-shrink: 0;
 }
 
 button.button-todo > .button-left,
