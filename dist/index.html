@@ -42,7 +42,14 @@
       <h1 class="project-name">Inbox</h1>
       <div class="todo-list" id=todo-list>
       </div>
-      <button class="button-todo add-task-button" id="button-add-task"></button>
+      <div class="add-todo-button-container"></div>
+      <div class="create-todo-form hidden" id="create-todo-container">
+        <input type="text" placeholder="New Todo" id="create-todo-input" required>
+        <div class="todo-button-group">
+          <button class="create-todo-button" id="create-todo-button">Create</button>
+          <button class="cancel-todo-button" id="cancel-todo-button">Cancel</button>
+        </div>
+      </div>
     </div>
   </div>
   
