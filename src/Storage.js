@@ -44,6 +44,12 @@ export default class Storage {
     Storage.saveTodoList(todoList)
   }
 
+  static getTodo(projectName, TodoName) {
+    const todoList = Storage.getTodoList()
+    const project = todoList.getProject(projectName)
+    return project.getTodo(TodoName)
+  }
+
   static addTodo(projectName, todo) {
     const todoList = Storage.getTodoList()
     todoList.getProject(projectName).addTodo(todo)
@@ -65,6 +71,12 @@ export default class Storage {
   static setTodoDate(projectName, TodoName, newDueDate) {
     const todoList = Storage.getTodoList()
     todoList.getProject(projectName).getTodo(TodoName).setDueDate(newDueDate)
+    Storage.saveTodoList(todoList)
+  }
+
+  static toggleTodoCompleted(projectName, TodoName) {
+    const todoList = Storage.getTodoList()
+    todoList.getProject(projectName).getTodo(TodoName).toggleCompleted()
     Storage.saveTodoList(todoList)
   }
 
