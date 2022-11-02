@@ -1,7 +1,7 @@
 export default class Todo {
-  constructor(titleInput, dateInput){
-    this.title = titleInput;
-    this.dueDate = dateInput;
+  constructor(name, dueDate = "No Due Date"){
+    this.name = name;
+    this.dueDate = dueDate;
     this.completed = false;
   }
 
