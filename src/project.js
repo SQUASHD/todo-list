@@ -19,7 +19,7 @@ export default class Project {
   }
 
   addTodo(newTodo) { 
-    if (this.todos.find((item) => item.getTitle() === newTodo.name)) return
+    if (this.todos.find((item) => item.getName() === newTodo.name)) return
     this.todos.push(newTodo);
   }
   deleteTodo(todo) {
