@@ -215,7 +215,8 @@ button#add-todo-button > .button-left {
 }
 
 button#add-todo-button > .button-left > div.todo-icon,
-button.button-todo > .button-left > div.todo-icon  {
+button.button-todo > .button-left > div.todo-icon,
+button.button-todo > .button-right > div.todo-icon {
   height: 20px;
   width: 20px;
 }
@@ -295,18 +296,16 @@ button.custom-projects-button > .project-button-left {
   font-size: 1rem;
 }
 
-.project-button-right {
-  fill: transparent;
+.project-button-right,
+.button-right > div.todo-icon {
+  visibility: hidden;
   justify-self: flex-end;
   height: 20px;
   width: 20px;
 }
 
-.project-button-right {
-  visibility: hidden
-}
-
-.custom-projects-button:hover .project-button-right {
+.custom-projects-button:hover .project-button-right,
+.button-todo:hover > .button-right > div.todo-icon {
   visibility: visible;
 }
 
@@ -350,15 +349,16 @@ button#add-todo-button > * {
 
 button.button-todo > .button-left {
   justify-self: start;
+}
+button.button-todo > .button-right {
+  justify-self: end;
+}
 
+button.button-todo > .button-left,
+button.button-todo > .button-right {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-button.button-todo > .button-right {
-  grid-column: 3 / 4;
-  justify-self: end;
 }
 
 button.create-todo-button,
