@@ -26,43 +26,44 @@ export default class Storage {
         project.setTodos(
           project.getTodos().map((todo) => Object.assign(new Todo(), todo))
         )
-      );
-      
+    );
+    
     return todoList
+
   };
 
   static addProject(project) {
-    const todoList = getTodoList()
+    const todoList = Storage.getTodoList()
     todoList.addProject(project)
     Storage.saveTodoList(todoList)
   }
 
   static deleteProject(projectName) {
-    const todoList = getTodoList()
+    const todoList = Storage.getTodoList()
     todoList.deleteProject(projectName)
     Storage.saveTodoList(todoList)
   }
 
   static addTodo(projectName, todo) {
-    const todoList = getTodoList()
+    const todoList = Storage.getTodoList()
     todoList.getProject(projectName).addTodo(todo)
     Storage.saveTodoList(todoList)
   }
 
   static deleteTodo(projectName, TodoName) {
-    const todoList = getTodoList()
+    const todoList = Storage.getTodoList()
     todoList.getProject(projectName).deleteTodo(TodoName)
     Storage.saveTodoList(todoList)
   }
 
   static renameTodo(projectName, TodoName, newTodoName) {
-    const todoList = getTodoList()
+    const todoList = Storage.getTodoList()
     todoList.getProject(projectName).getTodo(TodoName).setName(newTodoName)
     Storage.saveTodoList(todoList)
   }
 
   static setTodoDate(projectName, TodoName, newDueDate) {
-    const todoList = getTodoList()
+    const todoList = Storage.getTodoList()
     todoList.getProject(projectName).getTodo(TodoName).setDueDate(newDueDate)
     Storage.saveTodoList(todoList)
   }
