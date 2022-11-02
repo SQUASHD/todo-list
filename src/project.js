@@ -1,23 +1,32 @@
-const Project = (name) => {
-  let name = name;
-  let todos = [];
-
-  const setName = (newName) => name = newName;
-  const getName = () => name;
-
-  const setTodos = (todos) => todos = todos;
-  const getTodos = () => todos;
-
-  const addTodo = (todo) => todos.push(todo);
-  const deleteTodo = (todo) => {
-    todos = todos.filter((item) => item !== todo);
+export default class Project {
+  constructor(projectName) {
+    this.name = projectName;
+    this.todos = [];
   }
-  const getTodo = (todoName) => {
-    return todos.find((todo) => todo.getName() === todoName);
+
+  setName(newName) {
+    this.name = newName;
   }
-  
-  return { setName, getName, setTodos, getTodos, addTodo, deleteTodo, getTodo };
+  getName() {
+    return this.name;
+  }
+
+  setTodos(newTodos) {
+    this.todos = newTodos;
+  }
+  getTodos() {
+    return this.todos;
+  }
+
+  addTodo(newTodo) { 
+    if (this.todos.find((item) => item.getTitle() === newTodo.name)) return
+    this.todos.push(newTodo);
+  }
+  deleteTodo(todo) {
+    this.todos = this.todos.filter((item) => item !== todo);
+  }
+  getTodo(todoName) {
+    return this.todos.find((todo) => todo.getName() === todoName);
+  }
 
 }
-
-export { Project };

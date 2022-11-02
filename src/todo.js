@@ -1,26 +1,29 @@
-const Todo = (title, dueDate = null, description = null) => {
-  let completed = false;
-  
-  const setDueDate = (date) => {
-    dueDate = date;
+export default class Todo {
+  constructor(titleInput, dateInput){
+    this.title = titleInput;
+    this.dueDate = dateInput;
+    this.completed = false;
   }
-  const getDueDate = () => dueDate;
 
-  const toggleCompleted = () => {
-    completed = !completed;
+  setDueDate(date) {
+    this.dueDate = date;
   }
-  const getCompleted = () => completed;
-
-  const setTitle = (newTitle) => title = newTitle;
-  const getTitle = () => title;
-
-  const setDescription = (description) => {
-    description = description;
+  getDueDate() {
+    return this.dueDate;
   }
-  const getDescription = () => description;
 
-  return { setTitle, getTitle, setDueDate, getDueDate, toggleCompleted, getCompleted, setDescription, getDescription };
+  toggleCompleted() {
+    this.completed = !this.completed;
+  }
+  getCompleted() {
+    return this.completed;
+  }
+
+  setTitle(newTitle) {
+    this.title = newTitle;
+  }
+  getTitle() {
+    return this.title;
+  }
   
 }
-
-export { Todo };

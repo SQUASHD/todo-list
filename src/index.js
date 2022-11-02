@@ -1,3 +1,3 @@
-import { UI } from './UI';
+import UI from './UI';
 
-UI.loadInitial();
+document.addEventListener('DOMContentLoaded', UI.loadInitial);

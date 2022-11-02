@@ -1,75 +1,70 @@
-import { TodoList } from './todoList';
-import { Project } from "./project";
-import { Todo } from "./todo";
+import TodoList from './todoList';
+import Project from "./project";
+import Todo from "./todo";
 
-const Storage = (() => {
+export default class Storage {
 
-  const saveTodoList = (data) => {
+  static saveTodoList(data) {
     localStorage.setItem('todolist', JSON.stringify(data));
   }
 
-  const getTodoList = () => {
+  static getTodoList() {
     const todoList = Object.assign(
-      TodoList(),
+      new TodoList(),
       JSON.parse(localStorage.getItem('todolist'))
     )
 
     todoList.setProjects(
       todoList
         .getProjects()
-        .map((project) => Object.assign(Project(), project))
+        .map((project) => Object.assign(new Project(), project))
     );
 
     todoList
       .getProjects()
       .forEach((project) =>
         project.setTodos(
-          project.getTodos().map((todo) => Object.assign(Todo(), todo))
+          project.getTodos().map((todo) => Object.assign(new Todo(), todo))
         )
       );
       
     return todoList
   };
 
-  const addProject = (project) => {
+  static addProject(project) {
     const todoList = getTodoList()
     todoList.addProject(project)
-    saveTodoList(todoList)
+    Storage.saveTodoList(todoList)
   }
 
-  const deleteProject = (projectName) => {
+  static deleteProject(projectName) {
     const todoList = getTodoList()
     todoList.deleteProject(projectName)
-    saveTodoList(todoList)
+    Storage.saveTodoList(todoList)
   }
 
-  const addTodo = (projectName, todo) => {
+  static addTodo(projectName, todo) {
     const todoList = getTodoList()
     todoList.getProject(projectName).addTodo(todo)
-    saveTodoList(todoList)
+    Storage.saveTodoList(todoList)
   }
 
-  const deleteTodo = (projectName, TodoName) => {
+  static deleteTodo(projectName, TodoName) {
     const todoList = getTodoList()
     todoList.getProject(projectName).deleteTodo(TodoName)
-    saveTodoList(todoList)
+    Storage.saveTodoList(todoList)
   }
 
-  const renameTodo = (projectName, TodoName, newTodoName) => {
+  static renameTodo(projectName, TodoName, newTodoName) {
     const todoList = getTodoList()
     todoList.getProject(projectName).getTodo(TodoName).setName(newTodoName)
-    saveTodoList(todoList)
+    Storage.saveTodoList(todoList)
   }
 
-  const setTodoDate = (projectName, TodoName, newDueDate) => {
+  static setTodoDate(projectName, TodoName, newDueDate) {
     const todoList = getTodoList()
     todoList.getProject(projectName).getTodo(TodoName).setDueDate(newDueDate)
-    saveTodoList(todoList)
+    Storage.saveTodoList(todoList)
   }
-    
-    
-  return { saveTodoList, getTodoList, addProject, deleteProject, addTodo, deleteTodo, renameTodo, setTodoDate }
 
-})();
-
-export { Storage };
+};

@@ -1,28 +1,30 @@
-import { Project } from "./project";
+import Project from "./project";
 
-const TodoList = () => {
-  let projects = [];
-  projects.push(Project("Inbox"));
-  projects.push(Project("Due"))
+export default class TodoList {
+  constructor() {
+    this.projects = [];
+    this.projects.push(new Project("Inbox"));
+    this.projects.push(new Project("Due"))
+  }
 
-  const setProjects = (projectsList) => projects = projectsList;
+  setProjects(projectsList) {
+    this.projects = projectsList;
+  }
 
-  const getProjects = () => projects;
+  getProjects() {
+    return this.projects;
+  }
 
-  const addProject = (newProject) => {
-      projects.push(newProject);
-    }
-
-  const getProject = (projectName) => {
-      return projects.find((project) => project.getName() === projectName);
-    }
-
-  const removeProject = (project) => {
-      projects = projects.filter((item) => item !== project);
-    }
-
-  return { setProjects, getProjects, addProject, removeProject, getProject };
+  getProject(projectName) {
+    return this.projects.find((project) => project.getName() === projectName);
+  }
+  
+  addProject(newProject) {
+    this.projects.push(newProject);
+  }
+  
+  removeProject(project) {
+    this.projects = this.projects.filter((item) => item !== project);
+  }
   
 };
-
-export { TodoList };

@@ -1,118 +1,90 @@
-import { Storage } from './storage';
-import { TodoList } from './todoList';
-import { Project } from './project';
-import { Todo } from './todo';
+import Storage from './storage';
+import Project from './project';
+import Todo from './todo';
 
-const UI = (() => {
+export default class UI {
 
-  const loadInitial = () => {
-    loadProjects();
-    initProjectButtons();
-    openProject('Inbox', document.getElementById('inbox-btn'));
+  static loadInitial = () => {
+    UI.loadProjects();
+    UI.initProjectButtons();
+    UI.openProject('Inbox', document.getElementById('inbox-btn'));
   }
 
-  const loadProjects = () => {
-    Storage.getTodoList()
-      .getProjects()
-      .foreach((project) => {
+  static loadProjects() {
+    const todoList = Storage.getTodoList()
+    const projectList = todoList.getProjects()
+    projectList.forEach((project) => {
         if (
-          project.getName() !== 'Inbox' &&
-          project.getName() !== 'Due'
+          project.name !== 'Inbox' &&
+          project.name !== 'Due'
         ) {
-          createProject(project.getName())
+          UI.createProject(project.name)
         }
-      }
-    )
+      }) 
   }
 
-  const loadTodos = (projectName) => {
-    Storage.getTodoList()
-      .getProject(projectName)
-      .getTodos()
-      .forEach((todo) => createTodo(todo.getName(), todo.getDueDate()))
-    
-    if (projectName !== 'Due') {
-      initAddTodoButton();
-    }
+  static loadTodos(projectName) {
+    const todoList = Storage.getTodoList()
+    const project = todoList.getProject(projectName)
+    const todos = project.getTodos()
+    todos.forEach((todo) => UI.createTodo(todo.getName(), todo.getDueDate()))
   }
 
-  const loadProjectContent = (projectName) => {
+  static loadProjectContent(projectName) {
     const projectView = document.getElementById('project-view');
     projectView.innerHTML = `
       <h1 class="project-name">${projectName}</h1>
       <div class="todo-list" id=todo-list></div>`;
-    if (projectName !== 'Inbox' && projectName !== 'Due') {
-      projectView.innerHTML += `
-      <button class="button-add-task" id="button-add-task">
-        <i class="fas fa-plus"></i>
-        Add Task
-      </button>
-      <div class="add-task-popup" id="add-task-popup">
-        <input
-          class="input-add-task-popup"
-          id="input-add-task-popup"
-          type="text"
-        />
-        <div class="add-task-popup-buttons">
-          <button class="button-add-task-popup" id="button-add-task-popup">
-            Add
-          </button>
-          <button
-            class="button-cancel-task-popup"
-            id="button-cancel-task-popup"
-          >
-            Cancel
-          </button>
-        </div>
-      </div>`
+    if (projectName !== 'Due') {
+      projectView.innerHTML += ``
     }
 
-    loadTodos(projectName);
+    UI.loadTodos(projectName);
   }
 
-  const initProjectButtons = () => {
+  static initProjectButtons() {
     const inboxBtn = document.getElementById('inbox-btn');
     const dueBtn = document.getElementById('due-btn');
     const customProjectsBtn = document.querySelectorAll('.custom-projects-btn');
 
-    inboxBtn.addEventListener('click', openInbox());
-    dueBtn.addEventListener('click', openDue());
+    inboxBtn.addEventListener('click', UI.openInbox);
+    dueBtn.addEventListener('click', UI.openDue);
     customProjectsBtn.forEach((btn) => {
       btn.addEventListener('click', handleProjectClick);
     });
   }
 
-  const initAddTodoButtons = () => {
+  // const initAddTodoButton = () => {
+  // }
+
+  static openInbox() {
+    UI.openProject('Inbox', this);
   }
 
-  const openInbox = () => {
-    openProject('Inbox', this);
+  static openDue(){
+    UI.openProject('Due', this);
   }
 
-  const openDue = () => {
-    openProject('Due', this);
-  }
-
-  const openProject = (projectName, projectButton) => {
-    const defaultProjectBtns = document.querySelectorAll(',default-projects-button')
-    const customProjectBtns = document.querySelectorAll('custom-projects-button')
+  static openProject(projectName, projectButton) {
+    const defaultProjectBtns = document.querySelectorAll('.default-projects-button')
+    const customProjectBtns = document.querySelectorAll('.custom-projects-button')
     const buttons = [...defaultProjectBtns, ...customProjectBtns]
 
     buttons.forEach((button) => button.classList.remove('active'))
     projectButton.classList.add('active')
-    loadProjectContent(projectName)
+    UI.loadProjectContent(projectName)
   }
 
-  const handleProjectClick = (e) => {
+  static handleProjectClick(e) {
     const projectName = this.childdren[0].children[1].textContent;
     if (e.target.classList.contains('delete-item')) {
-      deleteProject(projectName, this);
+      UI.deleteProject(projectName, this);
       return;
     }
-    openProject(projectName);
+    UI.openProject(projectName);
   }
 
-  const createProject = (projectName) => {
+  static createProject(projectName) {
     const projectsList = document.getElementById('projects-list');
     projectsList.innerHTML += `
       <button class="custom-projects-button">
@@ -126,19 +98,24 @@ const UI = (() => {
       </button>`;
   }
 
-  const deleteProject = (projectName, deleteButton) => {
-    if (deleteButton.classList.contains('active')) clearProjectPreview();
+  static deleteProject(projectName, deleteButton) {
+    if (deleteButton.classList.contains('active')) clearProjectView();
     Storage.deleteProject(projectName);
-    clearProjects()
-    loadProjects();
+    UI.clearProjects()
+    UI.loadProjects();
   }
 
-  const clearProjects = () => {
+  static clearProjectView() {
+    const projectView = document.getElementById('project-view')
+    projectView.textContent = ''
+  }
+
+  static clearProjects() {
     const projectsList = document.getElementById('projects-list');
     projectsList.innerHTML = '';
   }
 
-  const createTodo = (taskName, dueDate) => {
+  static createTodo(taskName, dueDate) {
     const todoList = document.getElementById('todo-list');
     todoList.innerHTML += `
       <button class="button-todo">
@@ -150,6 +127,4 @@ const UI = (() => {
       </button>`
   }
 
-  return { loadInitial };
-
-})();
+};
