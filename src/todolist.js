@@ -26,15 +26,12 @@ export default class TodoList {
   }
   
   deleteProject(project) {
-    console.log('project should be deleted')
     const index = this.projects.findIndex(object => {
       return object.name === project
     });
     console.log(index)
     if (index > -1) {
       this.projects.splice(index, 1)
-      console.log(this.projects)
-      console.log('project deleted')
     }
   }
   
