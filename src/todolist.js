@@ -4,7 +4,7 @@ export default class TodoList {
   constructor() {
     this.projects = [];
     this.projects.push(new Project("Inbox"));
-    this.projects.push(new Project("Due"))
+    this.projects.push(new Project("Due"));
   }
 
   setProjects(projectsList) {
@@ -20,10 +20,12 @@ export default class TodoList {
   }
   
   addProject(newProject) {
-    this.projects.push(newProject);
+    if (this.projects.find((project) => project.name === newProject.name))
+      return
+    this.projects.push(newProject)
   }
   
-  removeProject(project) {
+  deleteProject(project) {
     this.projects = this.projects.filter((item) => item !== project);
   }
   
