@@ -189,7 +189,11 @@ button.custom-projects-button {
   align-items: center;
 }
 
-form.create-project > input[type="text"] {
+div.create-project-form {
+  margin-bottom: 10px;
+}
+
+div.create-project-form > input[type="text"] {
   appearance: none;
   border: none;
   outline: none;
@@ -201,7 +205,7 @@ form.create-project > input[type="text"] {
   font-size: .8rem;
 }
 
-form.create-project.active {
+div.create-project-form.hidden {
   display:none;
 }
 
