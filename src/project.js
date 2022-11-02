@@ -23,7 +23,13 @@ export default class Project {
     this.todos.push(newTodo);
   }
   deleteTodo(todo) {
-    this.todos = this.todos.filter((item) => item !== todo);
+    const index = this.todos.findIndex(object => {
+      return object.name === todo
+    });
+    if (index > -1) {
+      this.todos.splice(index, 1)
+    }
+
   }
   getTodo(todoName) {
     return this.todos.find((todo) => todo.getName() === todoName);
