@@ -7,6 +7,7 @@ export default class Project {
   setName(newName) {
     this.name = newName;
   }
+
   getName() {
     return this.name;
   }
@@ -14,25 +15,24 @@ export default class Project {
   setTodos(newTodos) {
     this.todos = newTodos;
   }
+
   getTodos() {
     return this.todos;
   }
 
-  addTodo(newTodo) { 
-    if (this.todos.find((item) => item.getName() === newTodo.name)) return
+  addTodo(newTodo) {
+    if (this.todos.find((item) => item.getName() === newTodo.name)) return;
     this.todos.push(newTodo);
   }
-  deleteTodo(todo) {
-    const index = this.todos.findIndex(object => {
-      return object.name === todo
-    });
-    if (index > -1) {
-      this.todos.splice(index, 1)
-    }
 
+  deleteTodo(todo) {
+    const index = this.todos.findIndex((object) => object.name === todo);
+    if (index > -1) {
+      this.todos.splice(index, 1);
+    }
   }
+
   getTodo(todoName) {
     return this.todos.find((todo) => todo.getName() === todoName);
   }
-
 }

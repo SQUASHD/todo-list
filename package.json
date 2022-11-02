@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/SQUASHD/todo-list#readme",
   "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   }
