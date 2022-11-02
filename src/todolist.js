@@ -29,7 +29,6 @@ export default class TodoList {
     const index = this.projects.findIndex(object => {
       return object.name === project
     });
-    console.log(index)
     if (index > -1) {
       this.projects.splice(index, 1)
     }
