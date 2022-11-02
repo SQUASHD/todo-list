@@ -165,9 +165,6 @@ h1.projects-title {
 
 .todo-list {
   grid-row: 2 / 3;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: repeat(auto-fill, 40px);
 }
 
 button {
@@ -190,6 +187,44 @@ button.custom-projects-button {
   display: flex;
   gap: 6px;
   align-items: center;
+}
+
+form.create-project > input[type="text"] {
+  appearance: none;
+  border: none;
+  outline: none;
+  background-color: white;
+  color: var(--primary-dark);
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: .8rem;
+}
+
+form.create-project.active {
+  display:none;
+}
+
+.project-button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.project-button-group > button {
+  background-color: transparent;
+  color: white;
+  font-size: .8rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  appearance: none;
+  border: 1px solid white;
+}
+
+.project-button-group > button:hover {
+  background-color: var(--primary-dark);
 }
 
 button.custom-projects-button {
