@@ -9,48 +9,129 @@
   --completed-todos: hsl(240, 5%, 50%);
 }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 *,
@@ -62,7 +143,8 @@ table {
 }
 
 body {
-  font-family: Ubuntu, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Ubuntu, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .main {
@@ -70,7 +152,7 @@ body {
   width: 100vw;
 
   background-color: var(--primary-light);
-  
+
   display: grid;
   grid-template-columns: minmax(220px, 20vw) minmax(400px, 80vw);
   grid-template-rows: 110px 1fr;
@@ -151,7 +233,7 @@ h1.projects-title {
 .project-view > h1#project-name,
 .project-view > div#todo-list,
 .project-view > div.add-todo-button-container,
-.project-view > div#create-todo-container  {
+.project-view > div#create-todo-container {
   padding: 0 60px 0;
 }
 
@@ -192,8 +274,8 @@ div.create-project-form {
   margin-bottom: 10px;
 }
 
-div.create-project-form > input[type="text"],
-.create-todo-form > input[type="text"] {
+div.create-project-form > input[type='text'],
+.create-todo-form > input[type='text'] {
   appearance: none;
   border: none;
   outline: none;
@@ -202,7 +284,7 @@ div.create-project-form > input[type="text"],
   width: 100%;
   border-radius: 5px;
   padding: 10px 20px;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 button#add-todo-button {
@@ -223,8 +305,11 @@ button.button-todo > .button-right > div.todo-icon {
   height: 20px;
   width: 20px;
 }
+button.button-todo > .button-right > div.todo-icon {
+  margin: 5px;
+}
 
-button#add-todo-button > .button-left > .todo-text  {
+button#add-todo-button > .button-left > .todo-text {
   font-size: 1rem;
   font-weight: 700;
 }
@@ -242,7 +327,7 @@ button#add-todo-button:hover {
 
 *.hidden,
 button#add-todo-button.hidden {
-  display:none;
+  display: none;
 }
 
 .project-button-group,
@@ -255,7 +340,7 @@ button#add-todo-button.hidden {
 .project-button-group > button {
   background-color: transparent;
   color: white;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 700;
   padding: 10px 20px;
   border-radius: 5px;
@@ -363,7 +448,6 @@ button#add-todo-button {
   align-items: center;
   justify-content: space-between;
   height: 40px;
-
 }
 
 button.button-todo > *,
@@ -402,6 +486,18 @@ button.cancel-todo-button:hover {
   .nav {
     width: 100%;
     display: none;
+  }
+
+  #project-view #project-name,
+  #project-view #todo-list,
+  #project-view .add-todo-button-container,
+  #project-view #create-todo-container {
+    padding: 0 12px;
+  }
+
+  #project-view #project-name {
+    font-size: 2.4rem;
+    padding: 20px 16px 12px;
   }
 
   .project-view {
