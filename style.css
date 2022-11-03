@@ -483,28 +483,83 @@ button.cancel-todo-button:hover {
 }
 
 @media (max-width: 700px) {
+
+  .main {
+    height: 100vh;
+    width: 100vw;
+  
+    background-color: var(--primary-light);
+  
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 50px calc(100vw - 110px);
+  }
+
+  .header .logo {
+    font-size: 1rem;
+    gap: 2px;
+  }
+  
+  .header .logo svg {
+    height: 20px;
+    width: 20px;
+  }
+
   .nav {
     width: 100%;
     display: none;
   }
 
-  #project-view #project-name,
+  .project-view {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+  
   #project-view #todo-list,
   #project-view .add-todo-button-container,
   #project-view #create-todo-container {
-    padding: 0 12px;
+    padding: 0 4px;
   }
 
   #project-view #project-name {
-    font-size: 2.4rem;
+    font-size: clamp(1rem, 5vw, 2rem);
     padding: 20px 16px 12px;
   }
 
-  .project-view {
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
+
+  .button-todo > .button-right > div.todo-icon {
+    visibility: visible;
   }
-  .project-view > * {
-    grid-column: 1 / 2;
+
+  button.button-todo,
+  button.button-todo, button#add-todo-button {
+    padding: 4px;
   }
+
+  button.button-todo > .button-right,
+  button.button-todo > .button-left,
+  button#add-todo-button > div.button-left {
+    font-size: 0.8rem;
+    gap: 5px;
+  }
+
+  button.button-todo > .button-right > div.todo-icon,
+  button.button-todo > .button-left > div.todo-icon,
+  button#add-todo-button > div.button-left > div.todo-icon {
+    height: 14px;
+    width: 14px;
+    margin: 0;
+  }
+
+  .button-right > .todo-icon > svg,
+  .button-left > .todo-icon > svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  button#add-todo-button > .button-left > .todo-text {
+    font-size: 0.8rem;
+  }
+
+
 }
