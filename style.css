@@ -72,7 +72,7 @@ body {
   background-color: var(--primary-light);
   
   display: grid;
-  grid-template-columns: clamp(240px, 13vw, 350px) 1fr;
+  grid-template-columns: minmax(220px, 20vw) minmax(400px, 80vw);
   grid-template-rows: 110px 1fr;
 }
 
