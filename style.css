@@ -207,7 +207,8 @@ div.create-project-form > input[type="text"],
 
 button#add-todo-button {
   box-sizing: border-box;
-  background-color: var(--primary-light-darker);
+  background-color: var(--primary-dark-lighter);
+  color: white;
 }
 
 button#add-todo-button > .button-left {
@@ -236,7 +237,7 @@ button.button-todo > .button-left > .todo-text {
 }
 
 button#add-todo-button:hover {
-  background-color: var(--primary-light-darker-hover);
+  background-color: var(--primary-dark-hover);
 }
 
 *.hidden,
