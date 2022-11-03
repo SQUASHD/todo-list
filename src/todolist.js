@@ -16,16 +16,18 @@ export default class TodoList {
   }
 
   getProject(projectName) {
-    return this.projects.find((project) => project.getName() === projectName);
+    return this.projects.find(project => project.getName() === projectName);
   }
 
   addProject(newProject) {
-    if (this.projects.find((project) => project.name === newProject.name)) { return; }
+    if (this.projects.find(project => project.name === newProject.name)) {
+      return;
+    }
     this.projects.push(newProject);
   }
 
   deleteProject(project) {
-    const index = this.projects.findIndex((object) => object.name === project);
+    const index = this.projects.findIndex(object => object.name === project);
     if (index > -1) {
       this.projects.splice(index, 1);
     }

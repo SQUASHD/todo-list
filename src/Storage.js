@@ -8,22 +8,17 @@ export default class Storage {
   }
 
   static getTodoList() {
-    const todoList = Object.assign(
-      new TodoList(),
-      JSON.parse(localStorage.getItem('todolist')),
-    );
+    const todoList = Object.assign(new TodoList(), JSON.parse(localStorage.getItem('todolist')));
 
     todoList.setProjects(
-      todoList
-        .getProjects()
-        .map((project) => Object.assign(new Project(), project)),
+      todoList.getProjects().map(project => Object.assign(new Project(), project))
     );
 
     todoList
       .getProjects()
-      .forEach((project) => project.setTodos(
-        project.getTodos().map((todo) => Object.assign(new Todo(), todo)),
-      ));
+      .forEach(project =>
+        project.setTodos(project.getTodos().map(todo => Object.assign(new Todo(), todo)))
+      );
 
     return todoList;
   }
@@ -60,19 +55,28 @@ export default class Storage {
 
   static renameTodo(projectName, TodoName, newTodoName) {
     const todoList = Storage.getTodoList();
-    todoList.getProject(projectName).getTodo(TodoName).setName(newTodoName);
+    todoList
+      .getProject(projectName)
+      .getTodo(TodoName)
+      .setName(newTodoName);
     Storage.saveTodoList(todoList);
   }
 
   static setTodoDate(projectName, TodoName, newDueDate) {
     const todoList = Storage.getTodoList();
-    todoList.getProject(projectName).getTodo(TodoName).setDueDate(newDueDate);
+    todoList
+      .getProject(projectName)
+      .getTodo(TodoName)
+      .setDueDate(newDueDate);
     Storage.saveTodoList(todoList);
   }
 
   static toggleTodoCompleted(projectName, TodoName) {
     const todoList = Storage.getTodoList();
-    todoList.getProject(projectName).getTodo(TodoName).toggleCompleted();
+    todoList
+      .getProject(projectName)
+      .getTodo(TodoName)
+      .toggleCompleted();
     Storage.saveTodoList(todoList);
   }
 }
